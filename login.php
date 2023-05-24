@@ -8,8 +8,8 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 }
 
 // Define the valid username and hashed password
-$valid_username = 'admin';
-$valid_password_hash = '$2y$10$.WvGOdimGq1I5uuLb/lYTeM.YkAws23tL8JkGyUhFUPF2vVizL3/W';
+$valid_username = 'your_username';
+$valid_password_hash = 'your_hashed_password';
 
 // Error message variables
 $username_error = $password_error = $login_error = '';
