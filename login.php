@@ -7,9 +7,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     exit;
 }
 
-// Define the valid username and password
-$valid_username = 'your_username';
-$valid_password = 'your_password';
+// Define the valid username and hashed password
+$valid_username = 'admin';
+$valid_password_hash = '$2y$10$.WvGOdimGq1I5uuLb/lYTeM.YkAws23tL8JkGyUhFUPF2vVizL3/W';
 
 // Error message variables
 $username_error = $password_error = $login_error = '';
@@ -18,7 +18,7 @@ $username_error = $password_error = $login_error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the submitted username and password
     $username = clean_input($_POST['username']);
-    $password = clean_input($_POST['password']);
+    $password = $_POST['password'];
 
     // Validate the username
     if (empty($username)) {
@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If both fields are filled, proceed with authentication
     if (!empty($username) && !empty($password)) {
-        // Validate the username and password
-        if ($username === $valid_username && $password === $valid_password) {
+        // Verify the username and hashed password
+        if ($username === $valid_username && password_verify($password, $valid_password_hash)) {
             // Set the 'logged_in' session variable to true
             $_SESSION['logged_in'] = true;
 
