@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['logged_in'] = true;
 
             // Redirect to the home page
-            header('Location: home.php');
+            header('Location: delete-influxdb2.php');
             exit;
         } else {
             // Invalid username or password
