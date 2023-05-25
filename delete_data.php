@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-// Check if user is logged in and if the request is a POST request
-if (!isset($_SESSION['logged_in']) && $_SESSION['logged_in'] !== true && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+// Check if user is not logged in or if the request is not a POST request
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVER['REQUEST_METHOD'] !== 'POST') {
     // Redirect to login page or display access denied message
     header('Location: login.php');
     exit;
