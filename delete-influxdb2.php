@@ -9,7 +9,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 ?>
 
-<!-- delete-influxdb2.html -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +17,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container">
+    <div class="container border p-4 mt-5">
         <form action="delete_data.php" method="post">
           <div class="mb-3">
             <label for="org" class="form-label">Organization:</label>
