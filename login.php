@@ -66,79 +66,23 @@ function clean_input($input)
     <title>Login</title>
     <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        p.error-message {
-            color: red;
-            margin-top: 10px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1 class="text-center">Login</h1>
         <form method="POST" action="">
-            <div class="form-group">
-                <label for="username">Username:</label>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
                 <input type="text" id="username" name="username" class="form-control" required>
             </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
                 <input type="password" id="password" name="password" class="form-control" required>
             </div>
-            <div>
+            <div class="text-center">
                 <input type="submit" value="Login" class="btn btn-primary">
             </div>
-            <p class="error-message"><?php echo $login_error; ?></p>
+            <p class="error-message text-center"><?php echo $login_error; ?></p>
         </form>
     </div>
 
@@ -146,3 +90,4 @@ function clean_input($input)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 </html>
+
