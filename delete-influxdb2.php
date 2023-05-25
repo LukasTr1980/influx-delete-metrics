@@ -20,14 +20,14 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <body>
     <div class="container">
         <form action="delete_data.php" method="post">
-            <div class="mb-3">
-                <label for="org" class="form-label">Organization:</label>
-                <input type="text" id="org" name="org" class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="bucket" class="form-label">Bucket:</label>
-                <input type="text" id="bucket" name="bucket" class="form-control">
-            </div>
+          <div class="mb-3">
+            <label for="org" class="form-label">Organization:</label>
+            <input type="text" id="org" name="org" class="form-control" value="villaanna">
+          </div>
+          <div class="mb-3">
+            <label for="bucket" class="form-label">Bucket:</label>
+            <input type="text" id="bucket" name="bucket" class="form-control" value="iobroker">
+          </div>
             <div class="mb-3">
                 <label for="start" class="form-label">Start:</label>
                 <input type="text" id="start" name="start" class="form-control">
