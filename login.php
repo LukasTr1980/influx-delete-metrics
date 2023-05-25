@@ -37,6 +37,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Set the 'logged_in' session variable to true
             $_SESSION['logged_in'] = true;
 
+            // Regenerate session ID to prevent session fixation attacks
+            session_regenerate_id(true);
+
+            // Set secure session cookie flag
+            ini_set('session.cookie_secure', 1);
+
+            // Set appropriate session timeout (e.g., 15 minutes)
+            $_SESSION['timeout'] = time() + 86.400; // 900 seconds = 15 minutes
+
             // Redirect to the home page
             header('Location: delete-influxdb2.php');
             exit;
