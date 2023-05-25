@@ -38,6 +38,11 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 $output = curl_exec($ch);
 $error = curl_error($ch); // Get any errors that occurred during the request
 
+// Output the cURL command sent
+$info = curl_getinfo($ch);
+$curl_command = "curl -X POST -H 'Authorization: Token $api_token' -H 'Content-Type: application/json' -d '" . json_encode($data) . "' " . $info['url'];
+echo "cURL Command: $curl_command<br><br>";
+
 curl_close($ch);
 
 if ($output === false) {
