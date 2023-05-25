@@ -36,7 +36,13 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
 $output = curl_exec($ch);
+$error = curl_error($ch); // Get any errors that occurred during the request
+
 curl_close($ch);
 
-echo htmlspecialchars($output);
+if ($output === false) {
+    echo 'cURL Error: ' . $error;
+} else {
+    echo htmlspecialchars($output);
+}
 ?>
