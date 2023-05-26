@@ -110,7 +110,10 @@ function clean_input($input)
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password:</label>
-                <input type="password" id="password" name="password" class="form-control" required>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
+                </div>
             </div>
             <div class="text-center">
                 <input type="submit" value="Login" class="btn btn-primary">
@@ -121,5 +124,19 @@ function clean_input($input)
 
     <!-- Include Bootstrap JS (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script>
+        var passwordInput = document.getElementById("password");
+        var togglePasswordButton = document.getElementById("togglePassword");
+
+        togglePasswordButton.addEventListener("click", function () {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePasswordButton.textContent = "Hide";
+            } else {
+                passwordInput.type = "password";
+                togglePasswordButton.textContent = "Show";
+            }
+        });
+    </script>
 </body>
 </html>
