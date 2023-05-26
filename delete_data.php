@@ -18,7 +18,7 @@ $stop = filter_input(INPUT_POST, 'stop', FILTER_SANITIZE_STRING);
 $measurement = filter_input(INPUT_POST, 'measurement', FILTER_SANITIZE_STRING);
 $api_token = filter_input(INPUT_POST, 'api_token', FILTER_SANITIZE_STRING);
 
-$endpoint = 'http://localhost:8086/api/v2/delete';
+$endpoint = "http://localhost:8086/api/v2/delete?org=$org&bucket=$bucket";
 $headers = [
     'Authorization: Token ' . $api_token,
     'Content-Type: application/json'
