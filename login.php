@@ -7,9 +7,9 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
     exit;
 }
 
-// Define the valid username and hashed password
-$valid_username = 'your_username';
-$valid_password_hash = 'your_hashed_password';
+// Load the JSON file with hashed passwords
+$json_file = '/var/www/html/passwd/influx-del-pwd.json';
+$passwords = json_decode(file_get_contents($json_file), true);
 
 // Error message variables
 $username_error = $password_error = $login_error = '';
@@ -32,26 +32,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // If both fields are filled, proceed with authentication
     if (!empty($username) && !empty($password)) {
-        // Verify the username and hashed password
-        if ($username === $valid_username && password_verify($password, $valid_password_hash)) {
-            // Set the 'logged_in' session variable to true
-            $_SESSION['logged_in'] = true;
+        // Check if the username exists in the JSON file
+        if (isset($passwords['passwords'])) {
+            $matching_credentials = null;
 
-            // Regenerate session ID to prevent session fixation attacks
-            session_regenerate_id(true);
+            foreach ($passwords['passwords'] as $credentials) {
+                if ($credentials['username'] === $username) {
+                    $matching_credentials = $credentials;
+                    break;
+                }
+            }
 
-            // Set secure session cookie flag
-            ini_set('session.cookie_secure', 1);
+            if ($matching_credentials !== null) {
+                $stored_password_hash = $matching_credentials['password_hash'];
+                // Hash the input password
+                $input_password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-            // Set appropriate session timeout (e.g., 15 minutes)
-            $_SESSION['timeout'] = time() + 86.400; // 900 seconds = 15 minutes
+                // Compare the hashed input password with the stored hashed password
+                if (password_verify($password, $stored_password_hash)) {
+                    // Set the 'logged_in' session variable to true
+                    $_SESSION['logged_in'] = true;
 
-            // Redirect to the home page
-            header('Location: delete-influxdb2.php');
-            exit;
+                    // Regenerate session ID to prevent session fixation attacks
+                    session_regenerate_id(true);
+
+                    // Set secure session cookie flag
+                    ini_set('session.cookie_secure', 1);
+
+                    // Set appropriate session timeout (e.g., 15 minutes)
+                    $_SESSION['timeout'] = time() + 86400; // 900 seconds = 15 minutes
+
+                    // Redirect to the home page
+                    header('Location: delete-influxdb2.php');
+                    exit;
+                } else {
+                    // Invalid password
+                    $login_error = 'Invalid password.';
+                }
+            } else {
+                // Invalid username
+                $login_error = 'Invalid username.';
+            }
         } else {
-            // Invalid username or password
-            $login_error = 'Invalid username or password.';
+            // Passwords not found in the JSON file
+            $login_error = 'Passwords not found.';
         }
     }
 }
