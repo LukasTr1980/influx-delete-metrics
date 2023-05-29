@@ -19,7 +19,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
 <body>
     <div class="container">
         <h1>Delete Data</h1>
-        <a href="login.php">&lt;&lt; Back to Login</a>
+        <a href="login.php" class="btn btn-secondary">&lt;&lt; Back to Login</a>
 
 <?php
 // delete_data.php
