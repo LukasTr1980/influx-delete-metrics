@@ -104,19 +104,15 @@ function clean_input($input)
     <div class="container border p-4 mt-5">
         <h1 class="text-center">Login</h1>
         <form method="POST" action="">
-            <div class="mb-3 row">
-                <label for="username" class="col-sm-3 col-form-label">Username:</label>
-                <div class="col-sm-9">
-                    <input type="text" id="username" name="username" class="form-control" required>
-                </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
             </div>
-            <div class="mb-3 row">
-                <label for="password" class="col-sm-3 col-form-label">Password:</label>
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <input type="password" id="password" name="password" class="form-control" required>
-                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
-                    </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password:</label>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <button class="btn btn-outline-secondary" type="button" id="togglePassword">Show</button>
                 </div>
             </div>
             <div class="text-center">
