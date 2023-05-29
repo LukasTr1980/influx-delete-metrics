@@ -48,6 +48,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
 $output = curl_exec($ch);
 $error = curl_error($ch); // Get any errors that occurred during the request
+$http_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE); // Get the HTTP response code
 
 // Output the cURL command sent
 $info = curl_getinfo($ch);
@@ -59,8 +60,6 @@ curl_close($ch);
 if ($output === false) {
     echo '<div class="alert alert-danger" role="alert">cURL Error: ' . $error . '</div>';
 } else {
-    $http_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-    echo $http_code;
     if ($http_code >= 200 && $http_code < 300) {
         echo '<div class="alert alert-success" role="alert">' . htmlspecialchars($output) . '</div>';
     } else {
