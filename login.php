@@ -18,7 +18,7 @@ $username_error = $password_error = $login_error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the submitted username and password
     $username = clean_input($_POST['username']);
-    $password = clean_infput($_POST['password']);
+    $password = clean_input($_POST['password']);
 
     // Validate the username
     if (empty($username)) {
