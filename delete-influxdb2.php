@@ -22,27 +22,27 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         <form action="delete_data.php" method="post">
           <div class="mb-3">
             <label for="org" class="form-label"><b>Organization:</b></label>
-            <input type="text" id="org" name="org" class="form-control" value="villaanna">
+            <input type="text" id="org" name="org" class="form-control" value="villaanna" required>
           </div>
           <div class="mb-3">
             <label for="bucket" class="form-label"><b>Bucket:</b></label>
-            <input type="text" id="bucket" name="bucket" class="form-control" value="iobroker">
+            <input type="text" id="bucket" name="bucket" class="form-control" value="iobroker" required>
           </div>
             <div class="mb-3">
                 <label for="start" class="form-label"><b>Start:</b></label>
-                <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ">
+                <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" required>
             </div>
             <div class="mb-3">
                 <label for="stop" class="form-label"><b>Stop:</b></label>
-                <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ">
+                <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" required>
             </div>
             <div class="mb-3">
                 <label for="measurement" class="form-label"><b>Measurement:</b></label>
-                <input type="text" id="measurement" name="measurement" class="form-control">
+                <input type="text" id="measurement" name="measurement" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="api_token" class="form-label"><b>API Token:</b></label>
-                <input type="text" id="api_token" name="api_token" class="form-control">
+                <input type="text" id="api_token" name="api_token" class="form-control" required>
             </div>
             <input type="submit" value="Submit" class="btn btn-primary">
         </form>
