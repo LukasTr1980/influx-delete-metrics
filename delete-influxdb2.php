@@ -50,5 +50,36 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 
     <!-- Include Bootstrap JS (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <script>
+        const startInput = document.getElementById('start');
+        const stopInput = document.getElementById('stop');
+
+        // Add event listener to start input
+        startInput.addEventListener('input', () => {
+            const value = startInput.value;
+            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+            if (regex.test(value)) {
+                startInput.classList.remove('is-invalid');
+                startInput.classList.add('is-valid');
+            } else {
+                startInput.classList.remove('is-valid');
+                startInput.classList.add('is-invalid');
+            }
+        });
+
+        // Add event listener to stop input
+        stopInput.addEventListener('input', () => {
+            const value = stopInput.value;
+            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+            if (regex.test(value)) {
+                stopInput.classList.remove('is-invalid');
+                stopInput.classList.add('is-valid');
+            } else {
+                stopInput.classList.remove('is-valid');
+                stopInput.classList.add('is-invalid');
+            }
+        });
+    </script>
 </body>
 </html>
