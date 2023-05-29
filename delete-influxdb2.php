@@ -19,7 +19,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 <body>
     <div class="container border p-4 mt-5">
         <h1 class="text-center">Delete InfluxDB2 Metrics</h1>
-        <form action="delete_data.php" method="post">
+        <form action="delete_data.php" method="post" id="delete-form">
           <div class="mb-3">
             <label for="org" class="form-label"><b>Organization:</b></label>
             <input type="text" id="org" name="org" class="form-control" value="villaanna" required>
@@ -54,6 +54,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     <script>
         const startInput = document.getElementById('start');
         const stopInput = document.getElementById('stop');
+        const deleteForm = document.getElementById('delete-form');
 
         // Add event listener to start input
         startInput.addEventListener('input', () => {
@@ -78,6 +79,16 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             } else {
                 stopInput.classList.remove('is-valid');
                 stopInput.classList.add('is-invalid');
+            }
+        });
+
+        // Add event listener to form submit
+        deleteForm.addEventListener('submit', (event) => {
+            const startValue = startInput.value;
+            const stopValue = stopInput.value;
+            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+            if (!regex.test(startValue) || !regex.test(stopValue)) {
+                event.preventDefault();
             }
         });
     </script>
