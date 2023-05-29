@@ -9,6 +9,17 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
 }
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Data</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Data</h1>
+
 <?php
 // delete_data.php
 $org = filter_input(INPUT_POST, 'org', FILTER_SANITIZE_STRING);
@@ -41,13 +52,19 @@ $error = curl_error($ch); // Get any errors that occurred during the request
 // Output the cURL command sent
 $info = curl_getinfo($ch);
 $curl_command = "curl -X POST -H 'Authorization: Token $api_token' -H 'Content-Type: application/json' -d '" . json_encode($data) . "' " . $info['url'];
-echo "cURL Command: $curl_command<br><br>";
+echo '<div class="alert alert-info" role="alert">' . $curl_command . '</div>';
 
 curl_close($ch);
 
 if ($output === false) {
-    echo 'cURL Error: ' . $error;
+    echo '<div class="alert alert-danger" role="alert">cURL Error: ' . $error . '</div>';
 } else {
-    echo htmlspecialchars($output);
+    echo '<div class="alert alert-success" role="alert">' . htmlspecialchars($output) . '</div>';
 }
 ?>
+
+ </div>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
