@@ -30,11 +30,11 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
           </div>
             <div class="mb-3">
                 <label for="start" class="form-label"><b>Start:</b></label>
-                <input type="text" id="start" name="start" class="form-control">
+                <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ">
             </div>
             <div class="mb-3">
                 <label for="stop" class="form-label"><b>Stop:</b></label>
-                <input type="text" id="stop" name="stop" class="form-control">
+                <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ">
             </div>
             <div class="mb-3">
                 <label for="measurement" class="form-label"><b>Measurement:</b></label>
