@@ -17,7 +17,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container border">
+    <div class="container border mt-3">
         <h1>Delete Data</h1>
         <a href="login.php" class="btn btn-secondary">&lt;&lt; Back to Login</a>
 
