@@ -18,7 +18,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 </head>
 <body>
     <div class="container border p-4 mt-5">
-        <h1 style="font-weight: bold;">Delete InfluxDB2 Metrics</h1>
+        <h1 class="text-center">Delete InfluxDB2 Metrics</h1>
         <form action="delete_data.php" method="post">
           <div class="mb-3">
             <label for="org" class="form-label"><b>Organization:</b></label>
