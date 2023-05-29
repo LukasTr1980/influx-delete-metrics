@@ -54,7 +54,7 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
         // Output the cURL command sent
         $info = curl_getinfo($ch);
         $curl_command = "curl -X POST -H 'Authorization: Token $api_token' -H 'Content-Type: application/json' -d '" . json_encode($data) . "' " . $info['url'];
-        echo '<div class="alert alert-info" role="alert">' . $curl_command . '</div>';
+        echo '<div class="alert alert-info mb-3" role="alert">' . $curl_command . '</div>';
 
         curl_close($ch);
 
@@ -62,9 +62,9 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
             echo '<div class="alert alert-danger" role="alert">cURL Error: ' . $error . '</div>';
         } else {
             if ($http_code >= 200 && $http_code < 300) {
-                echo '<div class="alert alert-success" role="alert">' . htmlspecialchars($output) . '</div>';
+                echo '<div class="alert alert-success mb-3" role="alert">' . htmlspecialchars($output) . '</div>';
             } else {
-                echo '<div class="alert alert-danger" role="alert">HTTP Error ' . $http_code . ': ' . htmlspecialchars($output) . '</div>';
+                echo '<div class="alert alert-danger mb-3" role="alert">HTTP Error ' . $http_code . ': ' . htmlspecialchars($output) . '</div>';
             }
         }
         ?>
