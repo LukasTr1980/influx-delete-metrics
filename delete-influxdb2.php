@@ -94,6 +94,18 @@ $bucketNames = array_column($buckets['buckets'], 'name');
         const startInput = document.getElementById('start');
         const stopInput = document.getElementById('stop');
         const deleteForm = document.getElementById('delete-form');
+        const bucketDropdown = document.getElementById('bucket-dropdown');
+        const bucketInput = document.getElementById('bucket');
+
+          // Add event listener to dropdown menu items
+          const bucketItems = document.querySelectorAll('#bucket-dropdown .dropdown-item');
+          bucketItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const value = item.getAttribute('data-value');
+                bucketInput.value = value;
+                bucketDropdown.textContent = value;
+            });
+        });
 
         // Add event listener to start input
         startInput.addEventListener('input', () => {
