@@ -53,14 +53,16 @@ $bucketNames = array_column($buckets['buckets'], 'name');
             <label for="org" class="form-label"><b>Organization:</b></label>
             <input type="text" id="org" name="org" class="form-control" value="villaanna" required>
           </div>
-          <div class="mb-3">
-            <label for="bucket" class="form-label"><b>Bucket:</b></label>
-            <select id="bucket" name="bucket" class="form-control" required>
-              <?php foreach ($bucketNames as $bucketName) { ?>
-                <option value="<?php echo $bucketName; ?>"><?php echo $bucketName; ?></option>
-              <?php } ?>
-            </select>
-          </div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Bucket
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <?php foreach ($bucketNames as $bucketName) { ?>
+                    <li><a class="dropdown-item" href="#"><?php echo $bucketName; ?></a></li>
+                    <?php } ?>
+                </ul>
+            </div>
             <div class="mb-3">
                 <label for="start" class="form-label"><b>Start:</b></label>
                 <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" required>
