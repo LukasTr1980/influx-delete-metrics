@@ -103,10 +103,10 @@ $bucketNames = array_column($buckets['buckets'], 'name');
             item.addEventListener('click', () => {
                 const value = item.getAttribute('data-value');
                 bucketInput.value = value;
-                bucketDropdown.textContent = value;
+                bucketDropdown.textContent = value; // Set the dropdown button text to the selected bucket name
             });
         });
-
+        
         // Add event listener to start input
         startInput.addEventListener('input', () => {
             const value = startInput.value;
