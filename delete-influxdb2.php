@@ -9,6 +9,38 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 ?>
 
+<?php
+// Read the token from the JSON file
+$tokenFile = '/var/www/html/passwd/influx-read-buckets-token.json';
+$tokenData = file_get_contents($tokenFile);
+$tokenJson = json_decode($tokenData, true);
+$token = $tokenJson['token'];
+
+// Set the InfluxDB server URL and organization name
+$influxUrl = 'http://localhost:8086';
+$org = 'villaanna';
+
+// Set the API endpoint to retrieve the buckets
+$apiEndpoint = "/api/v2/buckets?org={$org}";
+
+// Set the curl command to retrieve the buckets
+$curlCommand = "curl --header 'Authorization: Token {$token}' '{$influxUrl}{$apiEndpoint}'";
+
+// Execute the curl command and capture the output
+$output = shell_exec($curlCommand);
+
+// Parse the output as JSON
+$buckets = json_decode($output, true);
+
+// Extract the bucket names
+$bucketNames = array_column($buckets['buckets'], 'name');
+
+// Print the bucket names
+foreach ($bucketNames as $bucketName) {
+    echo $bucketName . "\n";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
