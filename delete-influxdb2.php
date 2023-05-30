@@ -142,6 +142,15 @@ $bucketNames = array_column($buckets['buckets'], 'name');
                 event.preventDefault();
             }
         });
+
+        // Add event listener to form submit
+        const deleteForm = document.getElementById('delete-form');
+        deleteForm.addEventListener('submit', (event) => {
+            const selectedBucket = bucketDropdown.textContent;
+            const bucketButton = document.querySelector('#bucket-dropdown button');
+            bucketButton.textContent = selectedBucket; // Set the dropdown button text to the selected bucket name
+            bucketInput.value = selectedBucket;
+        });
     </script>
 </body>
 </html>
