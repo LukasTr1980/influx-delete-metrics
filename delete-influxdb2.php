@@ -55,18 +55,12 @@ $bucketNames = array_column($buckets['buckets'], 'name');
           </div>
           <div class="mb-3">
             <label for="bucket" class="form-label"><b>Bucket:</b></label>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="bucket-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    Select a bucket
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="bucket-dropdown">
-                    <?php foreach ($bucketNames as $bucketName) { ?>
-                        <li><a class="dropdown-item" href="#" data-value="<?php echo $bucketName; ?>"><?php echo $bucketName; ?></a></li>
-                        <?php } ?>
-                    </ul>
-                    <input type="hidden" id="bucket" name="bucket" value="">
-                </div>
-            </div>
+            <select id="bucket" name="bucket" class="form-control" required>
+              <?php foreach ($bucketNames as $bucketName) { ?>
+                <option value="<?php echo $bucketName; ?>"><?php echo $bucketName; ?></option>
+              <?php } ?>
+            </select>
+          </div>
             <div class="mb-3">
                 <label for="start" class="form-label"><b>Start:</b></label>
                 <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" required>
@@ -94,19 +88,7 @@ $bucketNames = array_column($buckets['buckets'], 'name');
         const startInput = document.getElementById('start');
         const stopInput = document.getElementById('stop');
         const deleteForm = document.getElementById('delete-form');
-        const bucketDropdown = document.getElementById('bucket-dropdown');
-        const bucketInput = document.getElementById('bucket');
 
-          // Add event listener to dropdown menu items
-          const bucketItems = document.querySelectorAll('#bucket-dropdown .dropdown-item');
-          bucketItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const value = item.getAttribute('data-value');
-                bucketInput.value = value;
-                bucketDropdown.textContent = value; // Set the dropdown button text to the selected bucket name
-            });
-        });
-        
         // Add event listener to start input
         startInput.addEventListener('input', () => {
             const value = startInput.value;
@@ -141,15 +123,6 @@ $bucketNames = array_column($buckets['buckets'], 'name');
             if (!regex.test(startValue) || !regex.test(stopValue)) {
                 event.preventDefault();
             }
-        });
-
-        // Add event listener to form submit
-        const deleteForm = document.getElementById('delete-form');
-        deleteForm.addEventListener('submit', (event) => {
-            const selectedBucket = bucketDropdown.textContent;
-            const bucketButton = document.querySelector('#bucket-dropdown button');
-            bucketButton.textContent = selectedBucket; // Set the dropdown button text to the selected bucket name
-            bucketInput.value = selectedBucket;
         });
     </script>
 </body>
