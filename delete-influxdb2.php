@@ -34,11 +34,6 @@ $buckets = json_decode($output, true);
 
 // Extract the bucket names
 $bucketNames = array_column($buckets['buckets'], 'name');
-
-// Print the bucket names
-foreach ($bucketNames as $bucketName) {
-    echo $bucketName . "\n";
-}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +55,11 @@ foreach ($bucketNames as $bucketName) {
           </div>
           <div class="mb-3">
             <label for="bucket" class="form-label"><b>Bucket:</b></label>
-            <input type="text" id="bucket" name="bucket" class="form-control" value="iobroker" required>
+            <select id="bucket" name="bucket" class="form-control" required>
+              <?php foreach ($bucketNames as $bucketName) { ?>
+                <option value="<?php echo $bucketName; ?>"><?php echo $bucketName; ?></option>
+              <?php } ?>
+            </select>
           </div>
             <div class="mb-3">
                 <label for="start" class="form-label"><b>Start:</b></label>
