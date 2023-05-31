@@ -49,32 +49,33 @@ $bucketNames = array_column($buckets['buckets'], 'name');
     <div class="container border p-4 mt-5">
         <h1 class="text-center">Delete InfluxDB2 Metrics</h1>
         <form action="delete_data.php" method="post" id="delete-form">
-          <div class="mb-3">
-            <label for="org" class="form-label"><b>Organization:</b></label>
+          <div class="mb-3 form-group">
+            <label for="org"><b>Organization:</b></label>
             <input type="text" id="org" name="org" class="form-control" value="villaanna" required>
           </div>
-          <div class="mb-3">
-            <label for="bucket" class="form-label"><b>Bucket:</b></label>
+          <div class="mb-3 form-group">
+            <label for="bucket"><b>Bucket:</b></label>
             <select id="bucket" name="bucket" class="form-control" required>
+              <option value="" disabled selected>Select a bucket</option>
               <?php foreach ($bucketNames as $bucketName) { ?>
                 <option value="<?php echo $bucketName; ?>"><?php echo $bucketName; ?></option>
               <?php } ?>
             </select>
           </div>
-            <div class="mb-3">
-                <label for="start" class="form-label"><b>Start:</b></label>
+            <div class="mb-3 form-group">
+                <label for="start"><b>Start:</b></label>
                 <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" required>
             </div>
-            <div class="mb-3">
-                <label for="stop" class="form-label"><b>Stop:</b></label>
+            <div class="mb-3 form-group">
+                <label for="stop"><b>Stop:</b></label>
                 <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ" required>
             </div>
-            <div class="mb-3">
-                <label for="measurement" class="form-label"><b>Measurement:</b></label>
+            <div class="mb-3 form-group">
+                <label for="measurement"><b>Measurement:</b></label>
                 <input type="text" id="measurement" name="measurement" class="form-control" required>
             </div>
-            <div class="mb-3">
-                <label for="api_token" class="form-label"><b>API Token:</b></label>
+            <div class="mb-3 form-group">
+                <label for="api_token"><b>API Token:</b></label>
                 <input type="text" id="api_token" name="api_token" class="form-control" required>
             </div>
             <input type="submit" value="Submit" class="btn btn-primary">
