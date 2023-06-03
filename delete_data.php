@@ -22,11 +22,17 @@ $start_time_local = new DateTime($_POST['start'], $local_tz);
 // Create a DateTime object for the stop time in the local server timezone
 $stop_time_local = new DateTime($_POST['stop'], $local_tz);
 
-// Convert the start time to UTC timezone
-$start_time_utc = $start_time_local->setTimezone(new DateTimeZone('UTC'));
+// Get the UTC timezone
+$utc_tz = new DateTimeZone('UTC');
 
-// Convert the stop time to UTC timezone
-$stop_time_utc = $stop_time_local->setTimezone(new DateTimeZone('UTC'));
+// Calculate the time difference between the local server timezone and UTC timezone
+$time_diff = $local_tz->getOffset($start_time_local) - $utc_tz->getOffset($start_time_local);
+
+// Subtract the time difference from the start time
+$start_time_utc = $start_time_local->sub(new DateInterval('PT' . abs($time_diff) . 'S'));
+
+// Subtract the time difference from the stop time
+$stop_time_utc = $stop_time_local->sub(new DateInterval('PT' . abs($time_diff) . 'S'));
 
 // Format the start and stop times in UTC timezone
 $start_time_utc_str = $start_time_utc->format('Y-m-d\TH:i:s.u\Z');
