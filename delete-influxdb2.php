@@ -34,7 +34,6 @@ $buckets = json_decode($output, true);
 
 // Extract the bucket names
 $bucketNames = array_column($buckets['buckets'], 'name');
-
 ?>
 
 <!DOCTYPE html>
@@ -91,29 +90,35 @@ $bucketNames = array_column($buckets['buckets'], 'name');
         const stopInput = document.getElementById('stop');
         const deleteForm = document.getElementById('delete-form');
 
-        // Add event listener to start input
-        startInput.addEventListener('input', () => {
-            const value = startInput.value;
-            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
-            if (regex.test(value)) {
-                startInput.classList.remove('is-invalid');
-                startInput.classList.add('is-valid');
-            } else {
-                startInput.classList.remove('is-valid');
-                startInput.classList.add('is-invalid');
+        // Set the default values for start and stop inputs
+        startInput.value = "YYYY-MM-DDTHH:MM:SSZ";
+        stopInput.value = "YYYY-MM-DDTHH:MM:SSZ";
+
+        // Clear the default value when the field is focused
+        startInput.addEventListener('focus', () => {
+            if (startInput.value === "YYYY-MM-DDTHH:MM:SSZ") {
+                startInput.value = "";
             }
         });
 
-        // Add event listener to stop input
-        stopInput.addEventListener('input', () => {
-            const value = stopInput.value;
-            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
-            if (regex.test(value)) {
-                stopInput.classList.remove('is-invalid');
-                stopInput.classList.add('is-valid');
-            } else {
-                stopInput.classList.remove('is-valid');
-                stopInput.classList.add('is-invalid');
+        // Restore the default value if the field is empty and loses focus
+        startInput.addEventListener('blur', () => {
+            if (startInput.value === "") {
+                startInput.value = "YYYY-MM-DDTHH:MM:SSZ";
+            }
+        });
+
+        // Clear the default value when the field is focused
+        stopInput.addEventListener('focus', () => {
+            if (stopInput.value === "YYYY-MM-DDTHH:MM:SSZ") {
+                stopInput.value = "";
+            }
+        });
+
+        // Restore the default value if the field is empty and loses focus
+        stopInput.addEventListener('blur', () => {
+            if (stopInput.value === "") {
+                stopInput.value = "YYYY-MM-DDTHH:MM:SSZ";
             }
         });
 
