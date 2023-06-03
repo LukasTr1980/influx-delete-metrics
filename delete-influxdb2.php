@@ -94,7 +94,7 @@ $bucketNames = array_column($buckets['buckets'], 'name');
         // Add event listener to start input
         startInput.addEventListener('input', () => {
             const value = startInput.value;
-            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+            const regex = new RegExp('^' + preg_quote('\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z') + '$');
             if (regex.test(value)) {
                 startInput.classList.remove('is-invalid');
                 startInput.classList.add('is-valid');
@@ -107,7 +107,7 @@ $bucketNames = array_column($buckets['buckets'], 'name');
         // Add event listener to stop input
         stopInput.addEventListener('input', () => {
             const value = stopInput.value;
-            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+            const regex = new RegExp('^' + preg_quote('\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z') + '$');
             if (regex.test(value)) {
                 stopInput.classList.remove('is-invalid');
                 stopInput.classList.add('is-valid');
@@ -121,7 +121,7 @@ $bucketNames = array_column($buckets['buckets'], 'name');
         deleteForm.addEventListener('submit', (event) => {
             const startValue = startInput.value;
             const stopValue = stopInput.value;
-            const regex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/;
+            const regex = new RegExp('^' + preg_quote('\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z') + '$');
             if (!regex.test(startValue) || !regex.test(stopValue)) {
                 event.preventDefault();
             }
