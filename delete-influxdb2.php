@@ -65,11 +65,11 @@ $bucketNames = array_column($buckets['buckets'], 'name');
           </div>
             <div class="mb-3 form-group">
                 <label for="start"><b>Start:</b></label>
-                <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Input time converts to UTC" required>
+                <input type="datetime-local" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Input time converts to UTC" required>
             </div>
             <div class="mb-3 form-group">
                 <label for="stop"><b>Stop:</b></label>
-                <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Input time converts to UTC" required>
+                <input type="datetime-local" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Input time converts to UTC" required>
             </div>
             <div class="mb-3 form-group">
                 <label for="measurement"><b>Measurement:</b></label>
