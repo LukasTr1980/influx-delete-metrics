@@ -13,19 +13,24 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
 // Get the local server timezone
 $local_timezone = date_default_timezone_get();
 
-// Create a DateTime object for the current time in the local server timezone
-$local_time = new DateTime('now', new DateTimeZone($local_timezone));
+// Create a DateTimeZone object for the local server timezone
+$local_tz = new DateTimeZone($local_timezone);
 
-// Create a DateTime object for the current time in UTC timezone
-$utc_time = new DateTime('now', new DateTimeZone('UTC'));
+// Create a DateTime object for the start time in the local server timezone
+$start_time_local = new DateTime($_POST['start'], $local_tz);
 
-// Get the time difference in hours between the two timezones
-$time_diff = $local_time->getOffset() / 3600 - $utc_time->getOffset() / 3600;
+// Create a DateTime object for the stop time in the local server timezone
+$stop_time_local = new DateTime($_POST['stop'], $local_tz);
 
-// Format the output string to include the sign of the time difference
-$output = sprintf('The time difference between UTC and local server time is %s%d hours.', $time_diff < 0 ? '-' : '+', abs($time_diff));
+// Convert the start time to UTC timezone
+$start_time_utc = $start_time_local->setTimezone(new DateTimeZone('UTC'));
 
-echo $output;
+// Convert the stop time to UTC timezone
+$stop_time_utc = $stop_time_local->setTimezone(new DateTimeZone('UTC'));
+
+// Format the start and stop times in UTC timezone
+$start_time_utc_str = $start_time_utc->format('Y-m-d\TH:i:s.u\Z');
+$stop_time_utc_str = $stop_time_utc->format('Y-m-d\TH:i:s.u\Z');
 ?>
 
 <!DOCTYPE html>
@@ -46,8 +51,6 @@ echo $output;
         // delete_data.php
         $org = filter_input(INPUT_POST, 'org', FILTER_SANITIZE_STRING);
         $bucket = filter_input(INPUT_POST, 'bucket', FILTER_SANITIZE_STRING);
-        $start = filter_input(INPUT_POST, 'start', FILTER_SANITIZE_STRING);
-        $stop = filter_input(INPUT_POST, 'stop', FILTER_SANITIZE_STRING);
         $measurement = filter_input(INPUT_POST, 'measurement', FILTER_SANITIZE_STRING);
         $api_token = filter_input(INPUT_POST, 'api_token', FILTER_SANITIZE_STRING);
 
@@ -57,8 +60,8 @@ echo $output;
             'Content-Type: application/json'
         ];
         $data = [
-            'start' => $start,
-            'stop' => $stop,
+            'start' => $start_time_utc_str,
+            'stop' => $stop_time_utc_str,
             'predicate' => "_measurement=\"$measurement\""
         ];
 
