@@ -35,20 +35,6 @@ $buckets = json_decode($output, true);
 // Extract the bucket names
 $bucketNames = array_column($buckets['buckets'], 'name');
 
-// Get the local server timezone
-$local_timezone = date_default_timezone_get();
-
-// Create a DateTime object for the current time in the local server timezone
-$local_time = new DateTime('now', new DateTimeZone($local_timezone));
-
-// Create a DateTime object for the current time in UTC timezone
-$utc_time = new DateTime('now', new DateTimeZone('UTC'));
-
-// Get the time difference in hours between the two timezones
-$time_diff = $local_time->getOffset() / 3600 - $utc_time->getOffset() / 3600;
-
-echo 'The time difference between UTC and local server time is ' . $time_diff . ' hours.';
-
 ?>
 
 <!DOCTYPE html>
@@ -79,11 +65,11 @@ echo 'The time difference between UTC and local server time is ' . $time_diff . 
           </div>
             <div class="mb-3 form-group">
                 <label for="start"><b>Start:</b></label>
-                <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Achtung UTC Zeit" required>
+                <input type="text" id="start" name="start" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Input time converts to UTC" required>
             </div>
             <div class="mb-3 form-group">
                 <label for="stop"><b>Stop:</b></label>
-                <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Achtung UTC Zeit" required>
+                <input type="text" id="stop" name="stop" class="form-control" placeholder="YYYY-MM-DDTHH:MM:SSZ - Input time converts to UTC" required>
             </div>
             <div class="mb-3 form-group">
                 <label for="measurement"><b>Measurement:</b></label>

@@ -9,6 +9,25 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true || $_SERVE
 }
 ?>
 
+<?php
+// Get the local server timezone
+$local_timezone = date_default_timezone_get();
+
+// Create a DateTime object for the current time in the local server timezone
+$local_time = new DateTime('now', new DateTimeZone($local_timezone));
+
+// Create a DateTime object for the current time in UTC timezone
+$utc_time = new DateTime('now', new DateTimeZone('UTC'));
+
+// Get the time difference in hours between the two timezones
+$time_diff = $local_time->getOffset() / 3600 - $utc_time->getOffset() / 3600;
+
+// Format the output string to include the sign of the time difference
+$output = sprintf('The time difference between UTC and local server time is %s%d hours.', $time_diff < 0 ? '-' : '+', abs($time_diff));
+
+echo $output;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
